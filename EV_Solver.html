@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EigenSolve — Matrix Eigenvalue Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background Grid -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">λ</span>
+      <span class="logo-text">EigenSolve</span>
+    </div>
+    <div class="header-right">
+      <span class="badge">2×2 → 5×5</span>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon sun">☀</span>
+        <span class="theme-icon moon">☽</span>
+        <div class="toggle-thumb"></div>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1 class="hero-title">
+        <span class="line1">Eigen</span><span class="line2">value Solver</span>
+      </h1>
+      <p class="hero-sub">
+        Enter any <strong>n × n</strong> matrix (n = 2 to 5) and instantly compute eigenvalues, eigenvectors, and characteristic polynomials.
+      </p>
+    </section>
+
+    <!-- Size Selector -->
+    <section class="size-section">
+      <p class="size-label">Matrix Dimension</p>
+      <div class="size-tabs" role="group" aria-label="Matrix size">
+        <button class="size-tab" data-size="2">2×2</button>
+        <button class="size-tab active" data-size="3">3×3</button>
+        <button class="size-tab" data-size="4">4×4</button>
+        <button class="size-tab" data-size="5">5×5</button>
+      </div>
+    </section>
+
+    <!-- Matrix Input -->
+    <section class="matrix-section">
+      <div class="matrix-wrapper">
+        <div class="bracket left-bracket"></div>
+        <div class="matrix-grid" id="matrixGrid"></div>
+        <div class="bracket right-bracket"></div>
+      </div>
+
+      <div class="matrix-actions">
+        <button class="btn btn-ghost" id="clearBtn">Clear</button>
+        <button class="btn btn-ghost" id="randomBtn">Random</button>
+        <button class="btn btn-ghost" id="identityBtn">Identity</button>
+        <button class="btn btn-primary" id="solveBtn">
+          <span>Solve</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="results-section" id="resultsSection" aria-live="polite">
+
+      <div class="results-header">
+        <h2 class="results-title">Results</h2>
+        <button class="btn btn-ghost btn-sm" id="copyBtn">Copy All</button>
+      </div>
+
+      <!-- Characteristic Polynomial -->
+      <div class="result-card" id="polyCard">
+        <div class="card-label">Characteristic Polynomial</div>
+        <div class="card-content poly-display" id="polyDisplay"></div>
+      </div>
+
+      <!-- Eigenvalues -->
+      <div class="result-card" id="eigenvaluesCard">
+        <div class="card-label">Eigenvalues</div>
+        <div class="eigenvalues-grid" id="eigenvaluesGrid"></div>
+      </div>
+
+      <!-- Eigenvectors -->
+      <div class="result-card" id="eigenvectorsCard">
+        <div class="card-label">Eigenvectors</div>
+        <div class="eigenvectors-grid" id="eigenvectorsGrid"></div>
+      </div>
+
+      <!-- Trace / Determinant -->
+      <div class="result-card metrics-card" id="metricsCard">
+        <div class="metric">
+          <span class="metric-label">Trace (Σλᵢ)</span>
+          <span class="metric-value" id="traceVal">—</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric">
+          <span class="metric-label">Determinant (Πλᵢ)</span>
+          <span class="metric-value" id="detVal">—</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric">
+          <span class="metric-label">Rank</span>
+          <span class="metric-value" id="rankVal">—</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Error Toast -->
+    <div class="toast" id="toast"></div>
+
+  </main>
+
+  <footer class="footer">
+    <span>EigenSolve — Powered by Hafidh Haidary Baitan</span>
+    <span class="footer-sep">·</span>
+    <span>Characteristic polynomial computed via Faddeev–LeVerrier</span>
+  </footer>
+
+  <script src="solver.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
